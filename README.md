@@ -123,3 +123,16 @@ Corrections are the most valuable contribution: when Hermes changes and the guid
 Written and maintained by **Terp** ([Terp AI Labs](https://x.com/OnlyTerp)). Hermes Agent is built by [Nous Research](https://nousresearch.com). This is an independent community guide, not affiliated with or endorsed by Nous Research. The Molty prompt in [chapter 06](./guide/06-personality-and-context.md#the-molty-prompt) is from [OpenClaw's docs](https://docs.openclaw.ai/concepts/soul#the-molty-prompt), credited there.
 
 Licensed under [MIT](./LICENSE). Earlier editions of this guide (the 30-part v1 series) remain in the git history; see the [CHANGELOG](./CHANGELOG.md) for what moved where.
+
+## :film_projector: Development visualization
+
+Bekijk de [Gource development video](https://github.com/itsdarklikehell/hermes-optimization-guide/releases) voor een visuele tijdlijn van de projectgeschiedenis.
+
+Om de video lokaal te genereren:
+```bash
+gource -1920x1080 --auto-skip-seconds 1 -o gource.ppm
+ffmpeg -y -r 60 -i gource.ppm -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p gource.mp4
+```
+
+De GitHub Actions workflow (`.github/workflows/gource.yaml`) genereert de video automatisch bij elke release.
+
