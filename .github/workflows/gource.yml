@@ -1,0 +1,54 @@
+name: Gource visualization
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'gource/**'
+      - '**.gif'
+      - '**.mp4'
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 1'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gource-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  gource:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Install Gource
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -qq -y gource ffmpeg
+
+      - name: Generate Gource video
+        run: |
+          gource --seconds-per-day 1 -1920x1080 \
+            --auto-skip-seconds 1 \
+            --hide-users --hide-filenames \
+            --title "Hermes Optimization Guide — visualisatie van de ontwikkeling" \
+            --output-ppm-stream - --output-framerate 30 2>/dev/null |
+          ffmpeg -y -r 30 -i - -c:v libx264 -preset fast -crf 23 \
+            -pix_fmt yuv420p -c:a aac -b:a 128k -movflags +faststart \
+            gource/gource.mp4 2>/dev/null
+
+      - name: Push video
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add gource/gource.mp4
+          git commit -m "ci: update Gource visualization video [skip ci]" || echo "No changes to commit"
+          git push
