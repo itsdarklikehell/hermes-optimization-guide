@@ -8,6 +8,8 @@
   <a href="https://github.com/NousResearch/hermes-agent/releases/tag/v2026.9.21"><img alt="Verified against Hermes v0.21.4" src="https://img.shields.io/badge/verified%20against-Hermes%20v0.21.4-7B3FE4"></a>
   <a href="./.github/workflows/drift-guard.yml"><img alt="Drift guard" src="https://github.com/OnlyTerp/hermes-optimization-guide/actions/workflows/drift-guard.yml/badge.svg"></a>
   <a href="./LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
+  <a href="https://github.com/itsdarklikehell/hermes-optimization-guide/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/itsdarklikehell/hermes-optimization-guide/ci.yml?style=for-the-badge&label=CI" alt="CI"></a>
+  <a href="https://github.com/itsdarklikehell/hermes-optimization-guide/actions/workflows/gource.yml"><img src="https://img.shields.io/github/actions/workflow/status/itsdarklikehell/hermes-optimization-guide/gource.yml?style=for-the-badge&label=Gource" alt="Gource"></a>
 </p>
 
 **Run [Hermes Agent](https://github.com/NousResearch/hermes-agent) well: cheaper, faster, safer, and actually getting better over time.**
